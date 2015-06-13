@@ -1,11 +1,11 @@
 import pickle
 import datetime
 
-with open("maps/umap",'r') as f:
+with open("maps/user.map",'r') as f:
         usermap = pickle.load(f)
-with open("maps/cmap", 'r') as f:
+with open("maps/course.map", 'r') as f:
         coursemap = pickle.load(f)
-with open("maps/omap", 'r') as f:
+with open("maps/object.map", 'r') as f:
         objmap = pickle.load(f)
 op_map = {"nagivate":0, "access":1, "problem":2, "page_close":3, "discussion":4, "video":5, "wiki":6}
 op_clsnum = len(op_map)

@@ -48,9 +48,9 @@ if __name__=="__main__":
         clean_log("log_train.csv")
         clean_enroll("enrollment_test.csv")
         clean_log("log_test.csv")
-        with open("maps/umap",'w') as f:
+        with open("maps/user.map",'w') as f:
                 pickle.dump(user_map, f)
-        with open("maps/cmap", 'w') as f:
+        with open("maps/course.map", 'w') as f:
                 pickle.dump(course_map, f)
-        with open("maps/omap", 'w') as f:
+        with open("maps/object.map", 'w') as f:
                 pickle.dump(obj_map, f)
