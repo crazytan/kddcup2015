@@ -1,2 +1,5 @@
 # PyCharm related files
 .idea/
+
+# submission files
+*.csv

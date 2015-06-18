@@ -72,13 +72,13 @@ def extfea(logcol):
                 feastr += " %d:%d" % (op_id+st_index, op_num[op_id])
         st_index += op_clsnum
 
-        for op_id in range(op_clsnum):
-                feastr += " %d:%d" % (op_id+st_index, server_op_num[op_id])
-        st_index += op_clsnum
+        ## for op_id in range(op_clsnum):
+        ##         feastr += " %d:%d" % (op_id+st_index, server_op_num[op_id])
+        ## st_index += op_clsnum
 
-        for op_id in range(op_clsnum):
-                feastr += " %d:%d" % (op_id+st_index, browser_op_num[op_id])
-        st_index += op_clsnum
+        ## for op_id in range(op_clsnum):
+        ##         feastr += " %d:%d" % (op_id+st_index, browser_op_num[op_id])
+        ## st_index += op_clsnum
 
         feastr + " %d:%d" % (st_index, log_times)
         st_index += 1
