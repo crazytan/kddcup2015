@@ -98,7 +98,7 @@ if __name__ == "__main__":
     print "extracting training features..."
     write_feature(get_truth_map(IO.get_train_truth()),
                   extract(IO.get_train_log()),
-                  "feature/train")
+                  IO.get_train())
 
     print "extracting testing features..."
-    write_feature({}, extract(IO.get_test_log()), "feature/test")
+    write_feature({}, extract(IO.get_test_log()), IO.get_test())
