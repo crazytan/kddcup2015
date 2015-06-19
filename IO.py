@@ -3,13 +3,13 @@ import ConfigParser
 config = ConfigParser.RawConfigParser()
 config.read('IO.ini')
 
-def get_train():
+def get_train_enroll():
     return config.get('input', 'enroll_train')
 
 def get_train_log():
     return config.get('input', 'log_train')
 
-def get_test():
+def get_test_enroll():
     return config.get('input', 'enroll_test')
 
 def get_test_log():
@@ -26,3 +26,9 @@ def get_object():
 
 def get_train_truth():
     return config.get('input', 'truth_train')
+
+def get_train():
+    return config.get('feature', 'train')
+
+def get_test():
+    return config.get('feature', 'test')

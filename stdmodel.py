@@ -5,8 +5,9 @@ from sklearn.ensemble import *
 from sklearn.metrics import roc_curve
 from sklearn.metrics import auc
 import numpy
+import IO
 
-X_train, y_train, X_test, y_test = load_svmlight_files(("feature/train","feature/test"))
+X_train, y_train, X_test, y_test = load_svmlight_files((IO.get_train(), IO.get_test()))
 
 y_test = numpy.array(y_test)
 print y_test.shape
@@ -17,8 +18,8 @@ y_prob = numpy.array(clsier.predict_proba(X_test))
 print y_prob
 y_pred = y_prob[:,1]
 
-sample_submission_file = open('raw/sampleSubmission.csv')
-submission_file = open('submission.csv','w')
+sample_submission_file = open(IO.get_sample())
+submission_file = open(IO.get_submission(),'w')
 cnt = 0
 for line in sample_submission_file:
     enroll_id = line.split(',')[0]

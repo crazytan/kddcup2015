@@ -16,8 +16,6 @@ category_map = {'chapter': 1, 'course_info': 3, 'about': 0, 'sequential': 7, 've
 ncategory = len(category_map)
 
 def get(key):
-    if key == 'vPJ7ada7OqDfvYXMjnTQC3NExmLvWiUL':
-        pass
     # if key in user_map:
     #     return user_map[key]
     # if key in course_map:

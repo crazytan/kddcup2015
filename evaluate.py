@@ -1,4 +1,6 @@
-from sklearn.metrics import roc_curve  
+#!/usr/bin/env python
+
+from sklearn.metrics import roc_curve
 from sklearn.metrics import auc  
 truth = open("fea/train_2")
 pred = open("pred")
