@@ -12,9 +12,9 @@ X_train, y_train, X_test, y_test = load_svmlight_files((IO.get_train(), IO.get_t
 y_test = numpy.array(y_test)
 print y_test.shape
 
-clsier = RandomForestClassifier(n_estimators = 100, min_samples_leaf=20, verbose=1)
-clsier.fit(X_train, y_train)
-y_prob = numpy.array(clsier.predict_proba(X_test))
+classifier = RandomForestClassifier(n_estimators=100, min_samples_leaf=20, verbose=1, n_jobs=-1)
+classifier.fit(X_train, y_train)
+y_prob = numpy.array(classifier.predict_proba(X_test))
 print y_prob
 y_pred = y_prob[:,1]
 
