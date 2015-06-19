@@ -3,3 +3,6 @@
 
 # submission files
 *.csv
+
+# pyc files
+*.pyc
