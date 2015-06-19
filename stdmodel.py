@@ -6,7 +6,7 @@ from sklearn.metrics import roc_curve
 from sklearn.metrics import auc
 import numpy
 
-X_train, y_train, X_test, y_test = load_svmlight_files("feature/train","feature/test")
+X_train, y_train, X_test, y_test = load_svmlight_files(("feature/train","feature/test"))
 
 y_test = numpy.array(y_test)
 print y_test.shape
