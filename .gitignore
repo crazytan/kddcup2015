@@ -6,3 +6,6 @@
 
 # pyc files
 *.pyc
+
+# config file
+*.ini
