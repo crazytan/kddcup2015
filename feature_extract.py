@@ -26,7 +26,7 @@ def extract_feature(logs):
     date_list = []
 
     # operation count list
-    cnt = [[0 for i in range(mp.ncategory)] for i in range(mp.nevent)]
+    cnt = [[0 for i in range(mp.n_category)] for i in range(mp.n_event)]
 
     for log in logs:
         args = log.strip().split(',')
@@ -40,8 +40,8 @@ def extract_feature(logs):
         cnt[event_id][category_id] += 1
 
     # feature: # of event & object category
-    for eid in range(mp.nevent):
-        for cid in range(mp.ncategory):
+    for eid in range(mp.n_event):
+        for cid in range(mp.n_category):
             feature += " %d:%d" % (index, cnt[eid][cid])
             index += 1
 
@@ -85,18 +85,9 @@ def write_feature(truth_map, feature_list, feature_file):
         f.write("%d %s\n" % (truth_map.get(feature[0], 0), feature[1]))
     f.close()
 
-def get_truth_map(truth_file):
-    t_map = {}
-    f_truth = open(truth_file, 'r')
-    for line in f_truth:
-        eid, status = line.strip().split(',')
-        t_map[int(eid)] = int(status)
-    f_truth.close()
-    return t_map
-
 if __name__ == "__main__":
     print "extracting training features..."
-    write_feature(get_truth_map(IO.get_train_truth()),
+    write_feature(mp.truth_map,
                   extract(IO.get_train_log()),
                   IO.get_train())
 
