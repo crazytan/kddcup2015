@@ -23,3 +23,6 @@ def get_submission():
 
 def get_object():
     return config.get('input', 'object')
+
+def get_train_truth():
+    return config.get('input', 'truth_train')

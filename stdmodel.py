@@ -19,10 +19,10 @@ sample_submission_file = open('raw/sampleSubmission.csv')
 submission_file = open('submission.csv','w')
 cnt = 0
 for line in sample_submission_file:
-        enroll_id = line.split(',')[0]
-        new_line = enroll_id + ',' + str(y_pred[cnt]) + '\n'
-        submission_file.write(new_line)
-        cnt += 1
+    enroll_id = line.split(',')[0]
+    new_line = enroll_id + ',' + str(y_pred[cnt]) + '\n'
+    submission_file.write(new_line)
+    cnt += 1
 print cnt
 sample_submission_file.close()
 submission_file.close()
