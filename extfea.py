@@ -7,7 +7,7 @@ with open("maps/user.map",'r') as f:
     usermap = pickle.load(f)
 with open("maps/course.map", 'r') as f:
     coursemap = pickle.load(f)
-with open("maps/object.map", 'r') as f:
+with open("maps/object_old.map", 'r') as f:
     objmap = pickle.load(f)
 op_map = {"nagivate":0, "access":1, "problem":2, "page_close":3, "discussion":4, "video":5, "wiki":6}
 op_clsnum = len(op_map)
@@ -82,7 +82,7 @@ def extfea(logcol):
     ##         feastr += " %d:%d" % (op_id+st_index, browser_op_num[op_id])
     ## st_index += op_clsnum
 
-    feastr + " %d:%d" % (st_index, log_times)
+    feastr += " %d:%d" % (st_index, log_times)
     st_index += 1
 
     feastr += " %d:%d" % (st_index, log_datespan)
@@ -145,7 +145,7 @@ def write_test(testfile, feadic, outputfile):
 
 if __name__=="__main__":
     feadic = ext_file("clean/log_train.csv",)
-    write_train("clean/truth_train.csv", feadic, "feature/train")
+    write_train("clean/truth_train.csv", feadic, "feature/train_old")
 
     feadic = ext_file("clean/log_test.csv")
-    write_test("clean/enrollment_test.csv", feadic, "feature/test")
+    write_test("clean/enrollment_test.csv", feadic, "feature/test_old")

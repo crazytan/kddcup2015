@@ -54,5 +54,5 @@ if __name__=="__main__":
         pickle.dump(user_map, f)
     with open("maps/course.map", 'w') as f:
         pickle.dump(course_map, f)
-    with open("maps/object.map", 'w') as f:
+    with open("maps/object_old.map", 'w') as f:
         pickle.dump(obj_map, f)

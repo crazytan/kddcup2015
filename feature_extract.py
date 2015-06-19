@@ -26,7 +26,8 @@ def extract_feature(logs):
     date_list = []
 
     # operation count list
-    cnt = [[0 for i in range(mp.n_category)] for i in range(mp.n_event)]
+    # cnt = [[0 for i in range(mp.n_category)] for i in range(mp.n_event)]
+    cnt = [0 for i in range(mp.n_event)]
 
     for log in logs:
         args = log.strip().split(',')
@@ -37,17 +38,24 @@ def extract_feature(logs):
         event_id = mp.get(args[3])
         category_id = mp.get(args[4])[0]
 
-        cnt[event_id][category_id] += 1
+        # cnt[event_id][category_id] += 1
+        cnt[event_id] += 1
 
     # feature: # of event & object category
+    for eid in range(mp.n_event):
+        feature += " %d:%d" % (index, cnt[eid])
+        index += 1
+
+    '''
     for eid in range(mp.n_event):
         for cid in range(mp.n_category):
             feature += " %d:%d" % (index, cnt[eid][cid])
             index += 1
+    '''
 
     date_list = sorted(date_list)
     # feature: # of dates
-    feature += " %d:%d" % (index, len(date_list))
+    feature += " %d:%d" % (index, len(set(date_list)))
     index += 1
 
     # feature: time span
@@ -71,7 +79,7 @@ def extract(log_file):
             logs.append(log)
         else:
             if len(logs) > 0:
-                f_list.append((int(eid), extract_feature(logs)))
+                f_list.append((int(prev_eid), extract_feature(logs)))
             logs = [log,]
             prev_eid = eid
     f_list.append((int(eid), extract_feature(logs)))

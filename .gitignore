@@ -9,3 +9,6 @@
 
 # config file
 *.ini
+
+# shell scripts
+*.sh
