@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import pickle
-import IO
+import IO_util
 
 obj_map = {}
 category_map = {}
@@ -15,7 +15,7 @@ def retrieve(key, dic):
     return res
 
 if __name__ == "__main__":
-    obj_file = IO.get_object()
+    obj_file = IO_util.get_object()
     with open(obj_file, 'r') as f:
         #print
         f.readline()

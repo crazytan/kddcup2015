@@ -2,7 +2,7 @@
 
 import map_util as mp
 import datetime
-import IO
+import IO_util
 
 def get_date(d):
     yy,mm,dd = d.split('-')
@@ -18,16 +18,21 @@ def extract_feature(logs):
     # number of logs
     nlog = len(logs)
 
+    # enrollment id
+    eid = int(logs[0].strip().split(',', 1)[0])
+
     # feature: # of logs
     feature += "%d:%d" % (index, nlog)
     index += 1
+
+    user_id, course_id = mp.get_enroll(eid)
 
     # date list of logs
     date_list = []
 
     # operation count list
-    cnt = [[0 for i in range(mp.n_category)] for i in range(mp.n_event)]
-    # cnt = [0 for i in range(mp.n_event)]
+    # cnt = [[0 for i in range(mp.n_category)] for i in range(mp.n_event)]
+    cnt = [0 for i in range(mp.n_event)]
 
     for log in logs:
         args = log.strip().split(',')
@@ -38,21 +43,21 @@ def extract_feature(logs):
         event_id = mp.get(args[3])
         category_id = mp.get(args[4])[0]
 
-        cnt[event_id][category_id] += 1
-        # cnt[event_id] += 1
+        # cnt[event_id][category_id] += 1
+        cnt[event_id] += 1
 
     # feature: # of event & object category
-    '''
-    for eid in range(mp.n_event):
-        feature += " %d:%d" % (index, cnt[eid])
-        index += 1
-    '''
 
+    for id in range(mp.n_event):
+        feature += " %d:%d" % (index, cnt[id])
+        index += 1
+
+    """
     for eid in range(mp.n_event):
         for cid in range(mp.n_category):
             feature += " %d:%d" % (index, cnt[eid][cid])
             index += 1
-
+    """
     date_list = sorted(date_list)
     # feature: # of dates
     feature += " %d:%d" % (index, len(set(date_list)))
@@ -60,6 +65,20 @@ def extract_feature(logs):
 
     # feature: time span
     feature += " %d:%d" % (index, (date_list[-1] - date_list[0]).days)
+    index += 1
+
+    # # feature: # of drops in course
+    # feature += " %d:%d" % (index, mp.get_course_drop(course_id)[0])
+    # index += 1
+    # feature += " %d:%d" % (index, mp.get_course_drop(course_id)[1])
+    # index += 1
+
+    # feature: # of drops in user
+    feature += " %d:%d" % (index, mp.get_user_drop(user_id)[0])
+    index += 1
+    feature += " %d:%d" % (index, mp.get_user_drop(user_id)[1])
+    index += 1
+
     return feature
 
 def extract(log_file):
@@ -96,8 +115,8 @@ def write_feature(truth_map, feature_list, feature_file):
 if __name__ == "__main__":
     print "extracting training features..."
     write_feature(mp.truth_map,
-                  extract(IO.get_train_log()),
-                  IO.get_train())
+                  extract(IO_util.get_train_log()),
+                  IO_util.get_train())
 
     print "extracting testing features..."
-    write_feature({}, extract(IO.get_test_log()), IO.get_test())
+    write_feature({}, extract(IO_util.get_test_log()), IO_util.get_test())

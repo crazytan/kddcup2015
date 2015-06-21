@@ -2,10 +2,10 @@
 
 from sklearn.metrics import roc_curve
 from sklearn.metrics import auc
-import IO
+import IO_util as io_
 import map_util as mp
 
-submission_file = open(IO.get_submission(), 'r')
+submission_file = open(io_.get_submission(), 'r')
 pred_list = []
 eid_list = []
 
