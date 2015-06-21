@@ -45,7 +45,7 @@ def clean_log(fn):
     fin.close()
     fout.close()
 
-if __name__=="__main__":
+if __name__ == "__main__":
     clean_enroll("enrollment_train.csv")
     clean_log("log_train.csv")
     clean_enroll("enrollment_test.csv")
