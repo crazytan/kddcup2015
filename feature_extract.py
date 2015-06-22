@@ -31,8 +31,8 @@ def extract_feature(logs):
     date_list = []
 
     # operation count list
-    # cnt = [[0 for i in range(mp.n_category)] for i in range(mp.n_event)]
-    cnt = [0 for i in range(mp.n_event)]
+    cnt = [[0 for i in range(mp.n_category)] for i in range(mp.n_event)]
+    # cnt = [0 for i in range(mp.n_event)]
 
     for log in logs:
         args = log.strip().split(',')
@@ -43,21 +43,24 @@ def extract_feature(logs):
         event_id = mp.get(args[3])
         category_id = mp.get(args[4])[0]
 
-        # cnt[event_id][category_id] += 1
-        cnt[event_id] += 1
+        cnt[event_id][category_id] += 1
+        # cnt[event_id] += 1
 
     # feature: # of event & object category
-
+    """
     for id in range(mp.n_event):
         feature += " %d:%d" % (index, cnt[id])
         index += 1
 
     """
     for eid in range(mp.n_event):
+        feature += " %d:%d" % (index, sum(cnt[eid]))
+        index += 1
+
         for cid in range(mp.n_category):
             feature += " %d:%d" % (index, cnt[eid][cid])
             index += 1
-    """
+
     date_list = sorted(date_list)
     # feature: # of dates
     feature += " %d:%d" % (index, len(set(date_list)))
@@ -74,10 +77,15 @@ def extract_feature(logs):
     # index += 1
 
     # feature: # of drops in user
-    feature += " %d:%d" % (index, mp.get_user_drop(user_id)[0])
-    index += 1
-    feature += " %d:%d" % (index, mp.get_user_drop(user_id)[1])
-    index += 1
+    # cnt = mp.get_user_drop(user_id)
+    # if (cnt[0] + cnt[1]) > 0:
+    #     feature += " %d:%.5s" % (index, float(cnt[0]) / (cnt[0] + cnt[1]))
+    # else:
+    #     feature += " %d:0.5" % index
+    # feature += " %d:%d" % (index, mp.get_user_drop(user_id)[0])
+    # index += 1
+    # feature += " %d:%d" % (index, mp.get_user_drop(user_id)[1])
+    # index += 1
 
     return feature
 

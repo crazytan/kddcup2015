@@ -15,7 +15,7 @@ for line in submission_file:
     pred_list.append(float(pred))
 
 y = [float(mp.truth_map[eid]) for eid in eid_list]
-#truth = open("fea/train_2")
+# truth = open("fea/train_2")
 # pred = open("pred")
 
 # y = [float(line.split(' ',1)[0]) for line in truth]

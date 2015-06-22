@@ -48,6 +48,7 @@ event_map = {"nagivate":0, "access":1, "problem":2, "page_close":3, "discussion"
 n_event = len(event_map)
 
 category_map = {'chapter': 1, 'course_info': 3, 'about': 0, 'sequential': 7, 'vertical': 9, 'discussion': 13, 'outlink': 5, 'static_tab': 8, 'peergrading': 12, 'course': 2, 'combinedopenended': 11, 'html': 4, 'video': 10, 'dictation': 14, 'problem': 6, 'other': 15}
+# category_map = {'video': 0, 'problem': 1, 'course': 2, 'other': 3}
 n_category = len(category_map)
 
 user_drop_map = {}

@@ -2,8 +2,7 @@
 
 from sklearn.datasets import *
 from sklearn.ensemble import *
-from sklearn.metrics import roc_curve
-from sklearn.metrics import auc
+#from sklearn import neighbors
 import numpy
 import IO_util as io_
 
@@ -13,8 +12,13 @@ y_test = numpy.array(y_test)
 print y_test.shape
 
 classifier = RandomForestClassifier(n_estimators=100, min_samples_leaf=20, verbose=1, n_jobs=-1)
-classifier.fit(X_train, y_train)
-y_prob = numpy.array(classifier.predict_proba(X_test))
+#classifier = AdaBoostClassifier(n_estimators=100)
+#classifier = GradientBoostingClassifier(n_estimators=100, verbose=1)
+#classifier = neighbors.KNeighborsClassifier(n_neighbors=30)
+classifier.fit(X_train.toarray(), y_train)
+print classifier.feature_importances_
+
+y_prob = numpy.array(classifier.predict_proba(X_test.toarray()))
 print y_prob
 y_pred = y_prob[:,1]
 
