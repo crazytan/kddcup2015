@@ -11,9 +11,9 @@ X_train, y_train, X_test, y_test = load_svmlight_files((io_.get_train(), io_.get
 y_test = numpy.array(y_test)
 print y_test.shape
 
-classifier = RandomForestClassifier(n_estimators=100, min_samples_leaf=20, verbose=1, n_jobs=-1)
+#classifier = RandomForestClassifier(n_estimators=100, min_samples_leaf=20, verbose=1, n_jobs=-1)
 #classifier = AdaBoostClassifier(n_estimators=100)
-#classifier = GradientBoostingClassifier(n_estimators=100, verbose=1)
+classifier = GradientBoostingClassifier(n_estimators=100, verbose=1)
 #classifier = neighbors.KNeighborsClassifier(n_neighbors=30)
 classifier.fit(X_train.toarray(), y_train)
 print classifier.feature_importances_

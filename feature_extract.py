@@ -5,7 +5,7 @@ import datetime
 import IO_util
 
 def get_date(d):
-    yy,mm,dd = d.split('-')
+    yy, mm, dd = d.split('-')
     return datetime.date(int(yy), int(mm), int(dd))
 
 def extract_feature(logs):
@@ -54,8 +54,8 @@ def extract_feature(logs):
 
     """
     for eid in range(mp.n_event):
-        feature += " %d:%d" % (index, sum(cnt[eid]))
-        index += 1
+        # feature += " %d:%d" % (index, sum(cnt[eid]))
+        # index += 1
 
         for cid in range(mp.n_category):
             feature += " %d:%d" % (index, cnt[eid][cid])
